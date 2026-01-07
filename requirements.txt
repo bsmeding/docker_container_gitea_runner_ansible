@@ -1,6 +1,31 @@
-ansible==11.9.0
-netaddr
-jinja2
-pynautobot
-pynetbox
-jmespath
+
+# Core automation
+ansible-core==2.16.6
+
+# Molecule + Docker driver
+molecule==6.0.3
+molecule-plugins[docker]==23.5.3
+
+# Linting & quality
+ansible-lint==24.2.1
+yamllint==1.35.1
+
+# Python tooling
+jinja2==3.1.4
+pyyaml==6.0.1
+packaging==24.0
+rich==13.7.1
+
+# SSH / crypto
+paramiko==3.4.0
+cryptography==42.0.5
+
+# Test helpers
+pytest==8.1.1
+
+# NetDevOps
+netaddr==1.3.0
+jinja2==3.1.4
+pynautobot==2.3.1
+pynetbox==7.4.1
+jmespath==1.0.1

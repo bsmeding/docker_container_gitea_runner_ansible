@@ -3,7 +3,7 @@ FROM gitea/act_runner:latest
 LABEL maintainer="b@rtsmeding.nl"
 LABEL description="Gitea Act Runner with Ansible and Python packages"
 
-# Install Python and Ansible-related dependencies
+# Install Python, Node.js, and Ansible-related dependencies
 RUN apk update && \
     apk add --no-cache \
         python3 \
@@ -12,7 +12,9 @@ RUN apk update && \
         openssh \
         sshpass \
         git \
-        curl && \
+        curl \
+        nodejs \
+        npm && \
     pip3 install --upgrade pip setuptools --break-system-packages
 
 # Copy and install requirements
