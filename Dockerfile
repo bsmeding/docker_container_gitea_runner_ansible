@@ -1,28 +1,35 @@
-FROM gitea/act_runner:latest
+FROM gitea/act_runner:0.2.13
 
 LABEL maintainer="b@rtsmeding.nl"
 LABEL description="Gitea Act Runner with Ansible and Python packages"
 
-# Install Python, Node.js, and Ansible-related dependencies
-RUN apk update && \
-    apk add --no-cache \
-        python3 \
-        py3-pip \
-        py3-virtualenv \
-        openssh \
-        sshpass \
-        git \
-        curl \
-        nodejs \
-        npm && \
-    pip3 install --upgrade pip setuptools --break-system-packages
+# Install base dependencies (Alpine)
+RUN apk add --no-cache \
+      python3 \
+      py3-pip \
+      py3-virtualenv \
+      ca-certificates \
+      git \
+      curl \
+      openssh-client \
+      sshpass \
+      nodejs \
+      npm \
+    && update-ca-certificates
 
-# Copy and install requirements
+# Create and use a dedicated virtualenv for Python tooling
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv "$VIRTUAL_ENV" \
+    && "$VIRTUAL_ENV/bin/pip" install --no-cache-dir --upgrade pip setuptools wheel
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Copy and install requirements into venv
 COPY requirements.txt /tmp/requirements.txt
-RUN pip3 install -r /tmp/requirements.txt --break-system-packages && rm /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt \
+    && rm -f /tmp/requirements.txt
 
 # Add entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod 0755 /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
