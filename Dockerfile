@@ -1,9 +1,9 @@
 FROM gitea/act_runner:0.2.13
 
 LABEL maintainer="b@rtsmeding.nl"
-LABEL description="Gitea Act Runner with Ansible and Python packages"
+LABEL description="Gitea Actions job image with Ansible, Molecule, Node and Docker CLI"
 
-# Install base dependencies (Alpine)
+# Base tooling
 RUN apk add --no-cache \
       python3 \
       py3-pip \
@@ -15,20 +15,29 @@ RUN apk add --no-cache \
       sshpass \
       nodejs \
       npm \
+      docker-cli \
     && update-ca-certificates
 
-# Create and use a dedicated virtualenv for Python tooling
+# Create Python virtualenv
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv "$VIRTUAL_ENV" \
     && "$VIRTUAL_ENV/bin/pip" install --no-cache-dir --upgrade pip setuptools wheel
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# Copy and install requirements into venv
+# Install Python requirements
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt \
+    && pip check \
     && rm -f /tmp/requirements.txt
 
-# Add entrypoint
+# Sanity checks
+RUN node --version \
+    && npm --version \
+    && docker --version \
+    && python --version \
+    && ansible --version || true
+
+# Entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod 0755 /usr/local/bin/entrypoint.sh
 
