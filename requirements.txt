@@ -8,7 +8,7 @@ molecule-plugins[docker]==23.5.3
 
 # Linting & quality
 ansible-lint==24.12.2
-yamllint==1.35.1
+yamllint==1.38.0
 
 # Python tooling
 jinja2==3.1.6
