@@ -18,7 +18,7 @@ rich==13.7.1
 
 # SSH / crypto
 paramiko==3.4.0
-cryptography==44.0.1
+cryptography==44.0.3
 
 # Test helpers
 pytest==8.1.1
