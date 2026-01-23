@@ -12,7 +12,7 @@ yamllint==1.35.1
 
 # Python tooling
 jinja2==3.1.6
-pyyaml==6.0.1
+pyyaml==6.0.3
 packaging==24.0
 rich==13.7.1
 
