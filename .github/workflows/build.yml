@@ -3,6 +3,8 @@ name: Build & Push Docker Image
 on:
   push:
     branches: [main]
+  pull_request:
+  merge_group:
   schedule:
     - cron: "0 6 * * 1"  # Weekly build on Monday 06:00 UTC
 
