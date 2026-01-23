@@ -21,7 +21,7 @@ paramiko==3.4.0
 cryptography==44.0.3
 
 # Test helpers
-pytest==8.1.1
+pytest==8.4.2
 
 # NetDevOps
 netaddr==1.3.0
