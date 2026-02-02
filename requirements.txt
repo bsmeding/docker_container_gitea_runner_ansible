@@ -17,7 +17,7 @@ packaging==26.0
 rich==13.7.1
 
 # SSH / crypto
-paramiko==3.4.0
+paramiko==4.0.0
 cryptography==46.0.3
 
 # Test helpers
