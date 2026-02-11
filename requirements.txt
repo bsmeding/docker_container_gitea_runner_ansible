@@ -14,7 +14,7 @@ yamllint==1.35.1
 jinja2==3.1.6
 pyyaml==6.0.3
 packaging==26.0
-rich==13.7.1
+rich==14.3.2
 
 # SSH / crypto
 paramiko==4.0.0
