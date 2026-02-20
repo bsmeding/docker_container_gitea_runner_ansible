@@ -1,4 +1,4 @@
-FROM gitea/act_runner:0.2.13
+FROM gitea/act_runner:0.3.0
 
 LABEL maintainer="b@rtsmeding.nl"
 LABEL description="Gitea Actions job image with Ansible, Molecule, Node and Docker CLI"
