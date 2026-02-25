@@ -3,7 +3,7 @@
 ansible-core==2.20.2
 
 # Molecule + Docker driver
-molecule==25.12.0
+molecule==26.2.0
 molecule-plugins[docker]==25.8.12
 
 # Linting & quality
