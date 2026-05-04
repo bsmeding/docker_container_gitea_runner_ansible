@@ -4,11 +4,12 @@ LABEL maintainer="b@rtsmeding.nl"
 LABEL description="Gitea Actions job image with Ansible, Molecule, Node and Docker CLI"
 
 # Base tooling
-RUN apk add --no-cache \
+RUN apk add --no-cache --upgrade \
       python3 \
       py3-pip \
       py3-virtualenv \
       ca-certificates \
+      libexpat \
       git \
       curl \
       openssh-client \
@@ -20,7 +21,7 @@ RUN apk add --no-cache \
 
 # Create Python virtualenv
 ENV VIRTUAL_ENV=/opt/venv
-RUN python3 -m venv "$VIRTUAL_ENV" \
+RUN python3 -m virtualenv "$VIRTUAL_ENV" \
     && "$VIRTUAL_ENV/bin/pip" install --no-cache-dir --upgrade pip setuptools wheel
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
