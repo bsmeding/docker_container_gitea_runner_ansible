@@ -1,6 +1,6 @@
 
 # Core automation
-ansible-core==2.20.5
+ansible-core==2.21.0
 
 # Molecule + Docker driver
 molecule==26.4.0
