@@ -13,7 +13,7 @@ yamllint==1.38.0
 # Python tooling
 jinja2==3.1.6
 pyyaml==6.0.3
-packaging==26.2
+packaging==26.3
 rich==15.0.0
 
 # SSH / crypto
