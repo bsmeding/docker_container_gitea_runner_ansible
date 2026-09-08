@@ -17,8 +17,8 @@ packaging==26.3
 rich==15.0.0
 
 # SSH / crypto
-paramiko==4.0.0
-cryptography==46.0.7
+paramiko==5.0.0
+cryptography==48.0.1
 
 # Test helpers
 pytest==9.1.1
